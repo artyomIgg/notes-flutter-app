@@ -9,10 +9,10 @@ class NoteViewModel extends BaseViewModel {
         _createdAt = note.createdAt,
         _showDate = note.showDate;
 
-  String _title;
-  String _text;
-  DateTime _createdAt;
-  bool _showDate;
+  late String _title;
+  late String _text;
+  late DateTime _createdAt;
+  late bool _showDate;
 
   String get title => _title;
 
@@ -41,4 +41,19 @@ class NoteViewModel extends BaseViewModel {
     _showDate = showDate;
     notifyListeners();
   }
+
+  NoteViewModel.fromObject(dynamic o){
+    _title = o["title"];
+    _text = o["text"];
+    _createdAt = DateTime.parse(o["createdAt"]);
+    _showDate = (o["showDate"].toString()).toLowerCase() == 'true';
+  }
+
+  Map<String, dynamic> toJson() => {
+        'title': _title,
+        'text': _text,
+        'createdAt': _createdAt,
+        'showDate': _showDate,
+      };
 }
+

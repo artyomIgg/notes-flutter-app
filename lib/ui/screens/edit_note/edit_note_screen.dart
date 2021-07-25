@@ -90,6 +90,12 @@ class _EditNoteScreenState extends State<EditNoteScreen>
           onPressed: () {
             model.saveChanges();
             _fabAnimationController.reverse();
+            final note = Note.create(
+                    title: model.titleInputController.text,
+                    text: model.textInputController.text,
+                    showDate: model.showDate,
+                  );
+                  Navigator.of(context).pop(note);
           },
           elevation: 3.5,
           child: const Icon(Icons.save),
