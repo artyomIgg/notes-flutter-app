@@ -119,6 +119,7 @@ class NotesViewModel extends BaseViewModel {
       Iterable data = await json.decode(contents);
       List<NoteViewModel> notes =
           data.map((model) => NoteViewModel.fromObject(model)).toList();
+          notifyListeners();
       return _notes = notes;
     }
 
